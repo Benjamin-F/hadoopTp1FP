@@ -1,0 +1,15 @@
+hadoop com.sun.tools.javac.Main WordCount.java -d wordcount_classes/
+jar cf wc.jar  -C wordcount_classes/ .
+hadoop jar wc.jar org.myorg.WordCount /res/mapred_assignment/file.csv output-example
+
+
+mkdir tp1ex1
+hadoop com.sun.tools.javac.Main Tp1Ex1.java -d tp1ex1/
+jar cf tp1ex1.jar  -C tp1ex1/ .
+hadoop jar tp1ex1.jar org.myorg.Tp1Ex1 /res/mapred_assignment/file.csv output-tp1ex1
+hdfs dfs -copyToLocal output-tp1ex1/part-00000 resultatEx1
+
+hadoop com.sun.tools.javac.Main Tp1Ex2.java -d tp1ex2/
+jar cf tp1ex2.jar  -C tp1ex2/ .
+hadoop jar tp1ex2.jar org.myorg.Tp1Ex2 /res/mapred_assignment/file.csv output-tp1ex2
+hdfs dfs -copyToLocal output-tp1ex2/part-00000 resultatEx2
